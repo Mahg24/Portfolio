@@ -1,12 +1,18 @@
-"use client"
+"use client";
 
-import { useLanguage } from "@/components/language-provider"
-import { Button } from "@/components/ui/button"
-import { Download } from "lucide-react"
-import Image from "next/image"
+import { useLanguage } from "@/components/language-provider";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { Download } from "lucide-react";
+import Image from "next/image";
+import md5 from "blueimp-md5";
+const email = process.env.NEXT_PUBLIC_USER_EMAIL || "";
+
+const emailHash = md5(email.trim().toLowerCase());
+const gravatarUrl = `https://www.gravatar.com/avatar/${emailHash}?s=320&d=identicon`;
 
 export default function HeroSection() {
-  const { t } = useLanguage()
+  const { t } = useLanguage();
 
   return (
     <section
@@ -15,11 +21,15 @@ export default function HeroSection() {
     >
       <div className="flex flex-col space-y-6 text-center md:w-1/2 md:text-left">
         <div className="space-y-2">
-          <h1 className="animate-fade-in text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">John Doe</h1>
+          <h1 className="animate-fade-in text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
+            Miguel Holguin
+          </h1>
           <p className="animate-fade-in animate-delay-100 text-xl font-medium text-muted-foreground sm:text-2xl">
             {t("hero.title")}
           </p>
-          <p className="animate-fade-in animate-delay-200 text-muted-foreground">{t("hero.subtitle")}</p>
+          <p className="animate-fade-in animate-delay-200 text-muted-foreground">
+            {t("hero.subtitle")}
+          </p>
         </div>
 
         <div className="animate-fade-in animate-delay-300 flex justify-center space-x-4 md:justify-start">
@@ -27,9 +37,11 @@ export default function HeroSection() {
             <Download className="mr-2 h-4 w-4" />
             {t("hero.cta")}
           </Button>
-          <Button variant="outline" size="lg">
-            Contact Me
-          </Button>
+          <Link href="#contact" key={t("nav.contact")}>
+            <Button variant="outline" size="lg">
+              {t("hero.ctm")}
+            </Button>
+          </Link>
         </div>
 
         <div className="animate-fade-in animate-delay-400 flex justify-center space-x-4 md:justify-start">
@@ -107,10 +119,15 @@ export default function HeroSection() {
 
       <div className="animate-fade-in animate-delay-200 md:w-1/2">
         <div className="relative mx-auto h-64 w-64 overflow-hidden rounded-full border-4 border-primary md:h-80 md:w-80">
-          <Image src="/placeholder.svg?height=320&width=320" alt="John Doe" fill className="object-cover" priority />
+          <Image
+            src={gravatarUrl}
+            alt="Miguel Holguin"
+            fill
+            className="object-cover"
+            priority
+          />
         </div>
       </div>
     </section>
-  )
+  );
 }
-

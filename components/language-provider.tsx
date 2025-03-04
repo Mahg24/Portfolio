@@ -1,21 +1,22 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { createContext, useContext, useState } from "react"
+import type React from "react";
+import { createContext, useContext, useState } from "react";
 
-type Language = "en" | "es"
+type Language = "en" | "es";
 
 type LanguageContextType = {
-  language: Language
-  setLanguage: (language: Language) => void
-  t: (key: string) => string
-}
+  language: Language;
+  setLanguage: (language: Language) => void;
+  t: (key: string) => string;
+};
 
 const translations = {
   en: {
     "hero.title": "Backend Developer & DevOps Engineer",
     "hero.subtitle": "Building robust systems and streamlining deployments",
     "hero.cta": "Download CV",
+    "hero.ctm": "Contact me",
     "nav.home": "Home",
     "nav.about": "About",
     "nav.skills": "Skills",
@@ -35,17 +36,22 @@ const translations = {
     "projects.viewCode": "View Code",
     "blog.title": "Latest Articles",
     "blog.readMore": "Read More",
+    "contact.intro": "Let's Talk",
+    "contact.text":
+      "Feel free to reach out if you have any questions, project inquiries, or just want to connect. I'm always open to discussing new opportunities and challenges.",
     "contact.title": "Get In Touch",
     "contact.name": "Name",
     "contact.email": "Email",
     "contact.message": "Message",
     "contact.send": "Send Message",
+    "contact.phone": "Phone",
     "footer.rights": "All rights reserved",
   },
   es: {
     "hero.title": "Desarrollador Backend e Ingeniero DevOps",
     "hero.subtitle": "Construyendo sistemas robustos y optimizando despliegues",
     "hero.cta": "Descargar CV",
+    "hero.ctm": "Contactame",
     "nav.home": "Inicio",
     "nav.about": "Sobre Mí",
     "nav.skills": "Habilidades",
@@ -66,35 +72,40 @@ const translations = {
     "blog.title": "Artículos Recientes",
     "blog.readMore": "Leer Más",
     "contact.title": "Contacto",
+    "contact.intro": "Hablemos",
+    "contact.text":
+      "No dudes en contactarme si tienes alguna pregunta, consulta sobre proyectos o simplemente quieres conectar. Siempre estoy abierto a explorar nuevas oportunidades y desafíos.",
     "contact.name": "Nombre",
     "contact.email": "Correo",
+    "contact.phone": "Teléfono",
     "contact.message": "Mensaje",
     "contact.send": "Enviar Mensaje",
     "footer.rights": "Todos los derechos reservados",
   },
-}
+};
 
-const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
+const LanguageContext = createContext<LanguageContextType | undefined>(
+  undefined
+);
 
-export function LanguageProvider({
-  children,
-}: {
-  children: React.ReactNode
-}) {
-  const [language, setLanguage] = useState<Language>("en")
+export function LanguageProvider({ children }: { children: React.ReactNode }) {
+  const [language, setLanguage] = useState<Language>("en");
 
   const t = (key: string): string => {
-    return translations[language][key as keyof typeof translations.en] || key
-  }
+    return translations[language][key as keyof typeof translations.en] || key;
+  };
 
-  return <LanguageContext.Provider value={{ language, setLanguage, t }}>{children}</LanguageContext.Provider>
+  return (
+    <LanguageContext.Provider value={{ language, setLanguage, t }}>
+      {children}
+    </LanguageContext.Provider>
+  );
 }
 
 export function useLanguage() {
-  const context = useContext(LanguageContext)
+  const context = useContext(LanguageContext);
   if (context === undefined) {
-    throw new Error("useLanguage must be used within a LanguageProvider")
+    throw new Error("useLanguage must be used within a LanguageProvider");
   }
-  return context
+  return context;
 }
-

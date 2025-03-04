@@ -1,68 +1,69 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import { useLanguage } from "@/components/language-provider"
-import { useInView } from "react-intersection-observer"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Mail, Phone, MapPin, Send } from "lucide-react"
+import { useState } from "react";
+import { useLanguage } from "@/components/language-provider";
+import { useInView } from "react-intersection-observer";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Mail, Phone, MapPin, Send } from "lucide-react";
 
 export default function ContactSection() {
-  const { t } = useLanguage()
+  const { t } = useLanguage();
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.1,
-  })
+  });
 
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
-  })
+  });
 
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitSuccess, setSubmitSuccess] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
+    e.preventDefault();
+    setIsSubmitting(true);
 
     // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500))
+    await new Promise((resolve) => setTimeout(resolve, 1500));
 
-    setIsSubmitting(false)
-    setSubmitSuccess(true)
-    setFormData({ name: "", email: "", message: "" })
+    setIsSubmitting(false);
+    setSubmitSuccess(true);
+    setFormData({ name: "", email: "", message: "" });
 
     // Reset success message after 3 seconds
-    setTimeout(() => setSubmitSuccess(false), 3000)
-  }
+    setTimeout(() => setSubmitSuccess(false), 3000);
+  };
 
   return (
     <section id="contact" ref={ref} className="container py-16 md:py-24">
-      <h2 className="mb-12 text-center text-3xl font-bold md:text-4xl">{t("contact.title")}</h2>
+      <h2 className="mb-12 text-center text-3xl font-bold md:text-4xl">
+        {t("contact.title")}
+      </h2>
 
       <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-2">
         <div
           className={cn(
             "space-y-6 transition-all duration-700",
-            inView ? "translate-x-0 opacity-100" : "-translate-x-10 opacity-0",
+            inView ? "translate-x-0 opacity-100" : "-translate-x-10 opacity-0"
           )}
         >
-          <h3 className="text-2xl font-bold">Let's Talk</h3>
-          <p className="text-muted-foreground">
-            Feel free to reach out if you have any questions, project inquiries, or just want to connect. I'm always
-            open to discussing new opportunities and challenges.
-          </p>
+          <h3 className="text-2xl font-bold">{t("contact.intro")}</h3>
+          <p className="text-muted-foreground">{t("contact.text")}</p>
 
           <div className="space-y-4">
             <div className="flex items-center space-x-3">
@@ -71,7 +72,9 @@ export default function ContactSection() {
               </div>
               <div>
                 <p className="text-sm font-medium">Email</p>
-                <p className="text-sm text-muted-foreground">john.doe@example.com</p>
+                <p className="text-sm text-muted-foreground">
+                  john.doe@example.com
+                </p>
               </div>
             </div>
 
@@ -80,18 +83,10 @@ export default function ContactSection() {
                 <Phone className="h-5 w-5" />
               </div>
               <div>
-                <p className="text-sm font-medium">Phone</p>
-                <p className="text-sm text-muted-foreground">+1 (555) 123-4567</p>
-              </div>
-            </div>
-
-            <div className="flex items-center space-x-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-primary-foreground">
-                <MapPin className="h-5 w-5" />
-              </div>
-              <div>
-                <p className="text-sm font-medium">Location</p>
-                <p className="text-sm text-muted-foreground">San Francisco, CA</p>
+                <p className="text-sm font-medium">{t("contact.phone")}</p>
+                <p className="text-sm text-muted-foreground">
+                  +1 (555) 123-4567
+                </p>
               </div>
             </div>
           </div>
@@ -100,7 +95,7 @@ export default function ContactSection() {
         <div
           className={cn(
             "transition-all duration-700",
-            inView ? "translate-x-0 opacity-100" : "translate-x-10 opacity-0",
+            inView ? "translate-x-0 opacity-100" : "translate-x-10 opacity-0"
           )}
         >
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -111,7 +106,13 @@ export default function ContactSection() {
               >
                 {t("contact.name")}
               </label>
-              <Input id="name" name="name" value={formData.name} onChange={handleChange} required />
+              <Input
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+              />
             </div>
 
             <div className="space-y-2">
@@ -121,7 +122,14 @@ export default function ContactSection() {
               >
                 {t("contact.email")}
               </label>
-              <Input id="email" name="email" type="email" value={formData.email} onChange={handleChange} required />
+              <Input
+                id="email"
+                name="email"
+                type="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
             </div>
 
             <div className="space-y-2">
@@ -185,6 +193,5 @@ export default function ContactSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
-
