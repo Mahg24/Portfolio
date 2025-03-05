@@ -1,0 +1,6 @@
+packages:
+  - apps/back
+  - apps/front
+onlyBuiltDependencies:
+  - '@nestjs/core'
+  - '@swc/core'

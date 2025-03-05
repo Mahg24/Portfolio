@@ -1,0 +1,16 @@
+{
+  "name": "portfolio",
+  "private": true,
+  "workspaces": [
+    "apps/back",
+    "apps/front"
+  ],
+  "scripts": {
+    "dev:front": "pnpm --filter front run dev",
+    "dev:back": "pnpm --filter back run start",
+    "dev": "concurrently \"pnpm run dev:front\" \"pnpm run dev:back\""
+  },
+  "dependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
