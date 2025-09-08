@@ -3,6 +3,22 @@
 import { useLanguage } from "@/components/language-provider"
 import { useInView } from "react-intersection-observer"
 import { cn } from "@/lib/utils"
+import { Icon } from '@iconify/react';
+import javaIcon from '@iconify/icons-logos/java';
+import nodejsIcon from '@iconify/icons-logos/nodejs-icon';
+import pythonIcon from '@iconify/icons-logos/python';
+import phpIcon from '@iconify/icons-logos/php';
+import dockerIcon from '@iconify/icons-logos/docker-icon';
+import awsIcon from '@iconify/icons-logos/aws';
+import terraformIcon from '@iconify/icons-logos/terraform-icon';
+import jenkinsIcon from '@iconify/icons-logos/jenkins';
+import postgresqlIcon from '@iconify/icons-logos/postgresql';
+import mongodbIcon from '@iconify/icons-logos/mongodb';
+import redisIcon from '@iconify/icons-logos/redis';
+import mysqlIcon from '@iconify/icons-logos/mysql';
+import gitIcon from '@iconify/icons-logos/git-icon';
+import linuxIcon from '@iconify/icons-logos/linux-tux';
+import grafanaIcon from '@iconify/icons-logos/grafana';
 
 export default function SkillsSection() {
   const { t } = useLanguage()
@@ -18,18 +34,14 @@ export default function SkillsSection() {
         { name: "Java", icon: "java" },
         { name: "Node.js", icon: "nodejs" },
         { name: "Python", icon: "python" },
-        { name: "Go", icon: "go" },
-        { name: "Spring Boot", icon: "spring" },
-        { name: "Express.js", icon: "express" },
+        { name: "PHP", icon: "php" },
       ],
     },
     {
       title: t("skills.devops"),
       skills: [
         { name: "Docker", icon: "docker" },
-        { name: "Kubernetes", icon: "kubernetes" },
         { name: "AWS", icon: "aws" },
-        { name: "Azure", icon: "azure" },
         { name: "Terraform", icon: "terraform" },
         { name: "Jenkins", icon: "jenkins" },
       ],
@@ -41,8 +53,6 @@ export default function SkillsSection() {
         { name: "MongoDB", icon: "mongodb" },
         { name: "Redis", icon: "redis" },
         { name: "MySQL", icon: "mysql" },
-        { name: "Elasticsearch", icon: "elasticsearch" },
-        { name: "Cassandra", icon: "cassandra" },
       ],
     },
     {
@@ -50,20 +60,34 @@ export default function SkillsSection() {
       skills: [
         { name: "Git", icon: "git" },
         { name: "Linux", icon: "linux" },
-        { name: "Prometheus", icon: "prometheus" },
         { name: "Grafana", icon: "grafana" },
-        { name: "Ansible", icon: "ansible" },
         { name: "Bash", icon: "bash" },
       ],
     },
   ]
 
-  // This is a placeholder function to render icons
-  // In a real implementation, you would import actual icons
+  const iconMap: Record<string, any> = {
+    java: javaIcon,
+    nodejs: nodejsIcon,
+    python: pythonIcon,
+    php: phpIcon,
+    docker: dockerIcon,
+    aws: awsIcon,
+    terraform: terraformIcon,
+    jenkins: jenkinsIcon,
+    postgresql: postgresqlIcon,
+    mongodb: mongodbIcon,
+    redis: redisIcon,
+    mysql: mysqlIcon,
+    git: gitIcon,
+    linux: linuxIcon,
+    grafana: grafanaIcon,
+  }
+
   const renderIcon = (iconName: string) => {
     return (
       <div className="skill-icon">
-        <span className="text-lg font-medium">{iconName.charAt(0).toUpperCase()}</span>
+        <Icon icon={iconMap[iconName] ?? 'mdi:code-tags'} className="h-8 w-8" />
       </div>
     )
   }

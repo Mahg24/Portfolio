@@ -5,38 +5,80 @@ import { useInView } from "react-intersection-observer"
 import { cn } from "@/lib/utils"
 
 export default function AboutSection() {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.1,
   })
 
-  const timelineItems = [
+  const timelineItemsEs = [
     {
-      year: "2022 - Present",
-      title: "Senior DevOps Engineer",
-      company: "Tech Innovations Inc.",
-      description: "Leading infrastructure automation and CI/CD pipeline optimization for cloud-native applications.",
+      "year": "2024 - Presente",
+      "title": "Backend Developer",
+      "company": "Mercado Libre",
+      "description": "Desarrollo y mantenimiento de funcionalidades para el módulo de pagos con tarjeta de crédito; análisis, detección y corrección de errores en distintos componentes del sistema para garantizar estabilidad y eficiencia."
     },
     {
-      year: "2019 - 2022",
+      year: "2023 - 2024",
+      title: "Full Stack Developer",
+      company: "Q10",
+      description: "Desarrollé funcionalidades frontend y backend aplicando buenas prácticas; resolví bugs y consultas de clientes mejorando la experiencia de usuario; optimicé y documenté las APIs REST para una integración más eficiente."
+    },
+    {
+      year: "2022 - 2023 ",
+      title: "Backend Lead",
+      company: "Soluntech",
+      description: "Definí y apliqué estándares de codificación y buenas prácticas; implementé pruebas automatizadas y gestioné infraestructura cloud para garantizar disponibilidad.",
+    },
+    {
+      year: "2021 - 2022",
       title: "Backend Developer",
-      company: "Digital Solutions Ltd.",
-      description: "Developed scalable microservices and RESTful APIs using Node.js and Java Spring Boot.",
+      company: "Tres Astronautas, Medellín",
+      description: "Diseñé base de datos y API para una app logística; desplegué en AWS con contenedores Docker y pipelines de CI/CD.",
     },
     {
-      year: "2017 - 2019",
-      title: "Cloud Infrastructure Engineer",
-      company: "Cloud Systems Co.",
-      description: "Managed AWS infrastructure and implemented containerization strategies with Docker and Kubernetes.",
+      year: "2020 - 2021",
+      title: "Backend Developer",
+      company: "PolygonUs, Medellín",
+      description: "Diseñé arquitecturas para plataformas educativas y videojuegos con orientación vocacional; gestioné la infraestructura completa en AWS.",
+    },
+  ];
+
+  const timelineItemsEn = [
+    {
+      "year": "2024 - Present",
+      "title": "Backend Developer",
+      "company": "Mercado Libre",
+      "description": "Developing and maintaining features for the credit card payment module; analyzing, identifying, and fixing bugs across different components to ensure system stability and efficiency."
     },
     {
-      year: "2015 - 2017",
-      title: "Software Engineer",
-      company: "StartUp Ventures",
-      description: "Full-stack development with focus on backend systems and database optimization.",
+      "year": "2023 - 2024",
+      "title": "Full Stack Developer",
+      "company": "Q10",
+      "description": "Developed frontend and backend features following best practices; resolved bugs and client issues to improve user experience; optimized and documented REST APIs for smoother integration."
     },
-  ]
+    {
+      year: "2022 - 2023",
+      title: "Backend Lead",
+      company: "Soluntech",
+      description: "Defined and applied coding standards and best practices; implemented automated tests and managed cloud infrastructure to ensure availability.",
+    },
+    {
+      year: "2021 - 2022",
+      title: "Backend Developer",
+      company: "Tres Astronautas, Medellín",
+      description: "Designed database and API for a logistics app; deployed on AWS using Docker containers and CI/CD pipelines.",
+    },
+    {
+      year: "2019 - 2021",
+      title: "Backend Developer",
+      company: "PolygonUs, Medellín",
+      description: "Designed architectures for educational platforms and career-guidance games; fully managed AWS infrastructure and services.",
+    },
+  ];
+
+
+  const timelineItems = language === "es" ? timelineItemsEs : timelineItemsEn
 
   return (
     <section id="about" ref={ref} className="container py-16 md:py-24">
@@ -52,13 +94,7 @@ export default function AboutSection() {
           >
             <p className="text-lg">{t("about.description")}</p>
             <p className="text-muted-foreground">
-              With over 8 years of experience in the industry, I've worked on various projects ranging from high-traffic
-              e-commerce platforms to complex data processing systems. I'm passionate about creating efficient, scalable
-              solutions and automating development workflows.
-            </p>
-            <p className="text-muted-foreground">
-              When I'm not coding, you can find me contributing to open-source projects, writing technical articles, or
-              exploring the latest technologies in the cloud-native ecosystem.
+              {t("about.description2")}
             </p>
           </div>
 

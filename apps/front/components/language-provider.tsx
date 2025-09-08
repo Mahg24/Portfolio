@@ -26,6 +26,7 @@ const translations = {
     "about.title": "About Me",
     "about.description":
       "I'm a passionate Backend Developer and DevOps Engineer with extensive experience in building scalable applications and implementing efficient CI/CD pipelines. I specialize in cloud infrastructure, containerization, and automation.",
+    "about.description2":"With over 8 years of experience in the industry, I've worked on various projects ranging from high-traffic e-commerce platforms to complex data processing systems. I'm passionate about creating efficient, scalable solutions and automating development workflows.",
     "skills.title": "My Skills",
     "skills.backend": "Backend Development",
     "skills.devops": "DevOps & Cloud",
@@ -61,6 +62,7 @@ const translations = {
     "about.title": "Sobre Mí",
     "about.description":
       "Soy un apasionado Desarrollador Backend e Ingeniero DevOps con amplia experiencia en la construcción de aplicaciones escalables y la implementación de pipelines CI/CD eficientes. Me especializo en infraestructura en la nube, contenedorización y automatización.",
+    "about.description2": "Cuento con más de 8 años de experiencia en la industria, participando en proyectos que van desde plataformas de comercio electrónico de alto volumen hasta sistemas avanzados de procesamiento de datos. Me motiva diseñar soluciones escalables y eficientes, además de optimizar y automatizar los flujos de desarrollo.",
     "skills.title": "Mis Habilidades",
     "skills.backend": "Desarrollo Backend",
     "skills.devops": "DevOps y Cloud",
