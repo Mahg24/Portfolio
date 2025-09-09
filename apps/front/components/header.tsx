@@ -31,8 +31,8 @@ export default function Header() {
     { name: t("nav.home"), href: "#home" },
     { name: t("nav.about"), href: "#about" },
     { name: t("nav.skills"), href: "#skills" },
-    { name: t("nav.projects"), href: "#projects" },
-    { name: t("nav.blog"), href: "#blog" },
+    // { name: t("nav.projects"), href: "#projects" },
+    //{ name: t("nav.blog"), href: "#blog" },
     { name: t("nav.contact"), href: "#contact" },
   ];
 
@@ -40,7 +40,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center space-x-2">
-          <span className="text-xl font-bold">John Doe</span>
+          <span className="text-xl font-bold">Miguel Holguin</span>
         </Link>
 
         {/* Desktop Navigation */}
