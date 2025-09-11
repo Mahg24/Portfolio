@@ -2,14 +2,14 @@
 
 import type React from "react";
 
-import { useState } from "react";
 import { useLanguage } from "@/components/language-provider";
 import { useInView } from "react-intersection-observer";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle } from "lucide-react";
+import { useContactForm } from "@/hooks/use-contact-form";
 
 export default function ContactSection() {
   const { t } = useLanguage();
@@ -18,36 +18,14 @@ export default function ContactSection() {
     threshold: 0.1,
   });
 
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitSuccess, setSubmitSuccess] = useState(false);
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-
-    setIsSubmitting(false);
-    setSubmitSuccess(true);
-    setFormData({ name: "", email: "", message: "" });
-
-    // Reset success message after 3 seconds
-    setTimeout(() => setSubmitSuccess(false), 3000);
-  };
+  const {
+    formData,
+    isSubmitting,
+    submitSuccess,
+    submitError,
+    handleChange,
+    handleSubmit,
+  } = useContactForm();
 
   return (
     <section id="contact" ref={ref} className="container py-16 md:py-24">
@@ -173,7 +151,7 @@ export default function ContactSection() {
                         d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                       ></path>
                     </svg>
-                    Sending...
+                    Enviando...
                   </span>
                 ) : (
                   <span className="flex items-center">
@@ -186,7 +164,19 @@ export default function ContactSection() {
 
             {submitSuccess && (
               <div className="rounded-md bg-green-50 p-4 text-sm text-green-800 dark:bg-green-900/50 dark:text-green-300">
-                Thank you! Your message has been sent successfully.
+                <div className="flex items-center">
+                  <CheckCircle className="mr-2 h-4 w-4" />
+                  ¡Mensaje enviado exitosamente! Te contactaré pronto.
+                </div>
+              </div>
+            )}
+
+            {submitError && (
+              <div className="rounded-md bg-red-50 p-4 text-sm text-red-800 dark:bg-red-900/50 dark:text-red-300">
+                <div className="flex items-center">
+                  <AlertCircle className="mr-2 h-4 w-4" />
+                  {submitError}
+                </div>
               </div>
             )}
           </form>
