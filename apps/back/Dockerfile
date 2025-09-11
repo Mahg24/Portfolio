@@ -1,4 +1,4 @@
-FROM public.ecr.aws/docker/library/node:20-alpine
+FROM public.ecr.aws/docker/library/node:20-alpine as builder
 WORKDIR /app
 
 # Habilitar corepack para usar pnpm administrado por Node
@@ -20,7 +20,7 @@ RUN pnpm build
 COPY src/common/templates ./dist/common/templates
 
 
-FROM node:20-alpine AS runner
+FROM public.ecr.aws/docker/library/node:20-alpine AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
