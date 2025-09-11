@@ -32,6 +32,7 @@ async function bootstrap() {
   });
   
   app.useGlobalPipes(new ValidationPipe());
+  console.log("PORT:",process.env.PORT ?? 3001);
   await app.listen(process.env.PORT ?? 3001);
 }
 void bootstrap();
