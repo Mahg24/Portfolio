@@ -7,7 +7,7 @@
   ],
   "scripts": {
     "dev:front": "pnpm --filter front run dev",
-    "dev:back": "pnpm --filter back run start",
+    "dev:back": "pnpm --filter back run start:dev",
     "dev": "concurrently \"pnpm run dev:front\" \"pnpm run dev:back\""
   },
   "dependencies": {
