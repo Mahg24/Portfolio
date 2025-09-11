@@ -1,4 +1,4 @@
-FROM node:20-alpine AS builder
+FROM public.ecr.aws/docker/library/node:20-alpine
 WORKDIR /app
 
 # Habilitar corepack para usar pnpm administrado por Node
