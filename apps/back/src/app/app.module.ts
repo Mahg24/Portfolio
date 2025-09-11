@@ -5,6 +5,7 @@ import { ContactModule } from '../contact/contact.module';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
 import { ConfigModule } from '@nestjs/config';
+import { join } from 'path';
 
 @Module({
   imports: [ContactModule,
@@ -22,7 +23,9 @@ import { ConfigModule } from '@nestjs/config';
       },
     },
     template: {
-      dir: 'src/common/templates',
+      dir: process.env.NODE_ENV === 'production'
+        ? join(__dirname, '..', 'common', 'templates')
+        : join(process.cwd(), 'src', 'common', 'templates'),
       adapter: new HandlebarsAdapter(),
       options: {
         strict: true,
