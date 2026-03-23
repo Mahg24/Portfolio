@@ -17,7 +17,7 @@ import type {
 export const contactService = {
   async sendMessage(data: ContactFormData): Promise<ContactResponse> {
     const response = await apiService.post<ContactResponse>('/contact', data);
-    return response.data || response;
+    return (response.data || response) as any;
   },
 };
 
@@ -32,22 +32,22 @@ export const postsService = {
     
     const endpoint = `/posts${queryParams.toString() ? `?${queryParams.toString()}` : ''}`;
     const response = await apiService.get<PostsResponse>(endpoint);
-    return response.data || response;
+    return (response.data || response) as any;
   },
 
   async getPost(slug: string): Promise<Post> {
     const response = await apiService.get<Post>(`/posts/${slug}`);
-    return response.data || response;
+    return (response.data || response) as any;
   },
 
   async createPost(data: Omit<Post, 'id' | 'createdAt'>): Promise<Post> {
     const response = await apiService.post<Post>('/posts', data);
-    return response.data || response;
+    return (response.data || response) as any;
   },
 
   async updatePost(id: string, data: Partial<Post>): Promise<Post> {
     const response = await apiService.put<Post>(`/posts/${id}`, data);
-    return response.data || response;
+    return (response.data || response) as any;
   },
 
   async deletePost(id: string): Promise<void> {
@@ -66,27 +66,27 @@ export const projectsService = {
     
     const endpoint = `/projects${queryParams.toString() ? `?${queryParams.toString()}` : ''}`;
     const response = await apiService.get<ProjectsResponse>(endpoint);
-    return response.data || response;
+    return (response.data || response) as any;
   },
 
   async getProject(id: string): Promise<Project> {
     const response = await apiService.get<Project>(`/projects/${id}`);
-    return response.data || response;
+    return (response.data || response) as any;
   },
 
   async getFeaturedProjects(): Promise<Project[]> {
     const response = await apiService.get<Project[]>('/projects/featured');
-    return response.data || response;
+    return (response.data || response) as any;
   },
 
   async createProject(data: Omit<Project, 'id' | 'createdAt'>): Promise<Project> {
     const response = await apiService.post<Project>('/projects', data);
-    return response.data || response;
+    return (response.data || response) as any;
   },
 
   async updateProject(id: string, data: Partial<Project>): Promise<Project> {
     const response = await apiService.put<Project>(`/projects/${id}`, data);
-    return response.data || response;
+    return (response.data || response) as any;
   },
 
   async deleteProject(id: string): Promise<void> {
@@ -101,7 +101,7 @@ export const authService = {
       email,
       password,
     });
-    return response.data || response;
+    return (response.data || response) as any;
   },
 
   async register(userData: {
@@ -110,14 +110,14 @@ export const authService = {
     password: string;
   }): Promise<{ token: string; user: any }> {
     const response = await apiService.post<{ token: string; user: any }>('/auth/register', userData);
-    return response.data || response;
+    return (response.data || response) as any;
   },
 
   async refreshToken(refreshToken: string): Promise<{ token: string }> {
     const response = await apiService.post<{ token: string }>('/auth/refresh', {
       refreshToken,
     });
-    return response.data || response;
+    return (response.data || response) as any;
   },
 
   async logout(): Promise<void> {
@@ -134,7 +134,7 @@ export const notificationsService = {
     
     const endpoint = `/notifications${queryParams.toString() ? `?${queryParams.toString()}` : ''}`;
     const response = await apiService.get<any[]>(endpoint);
-    return response.data || response;
+    return (response.data || response) as any;
   },
 
   async markAsRead(id: string): Promise<void> {

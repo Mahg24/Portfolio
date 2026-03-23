@@ -20,7 +20,7 @@ export class ApiService {
   private defaultHeaders: Record<string, string>;
 
   constructor() {
-    this.baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+    this.baseUrl = process.env.NEXT_PUBLIC_API_URL || '/api';
     this.defaultHeaders = {
       'Content-Type': 'application/json',
     };
@@ -34,7 +34,7 @@ export class ApiService {
     options: RequestInit = {}
   ): Promise<ApiResponse<T>> {
     const url = `${this.baseUrl}${endpoint}`;
-    
+
     const config: RequestInit = {
       ...options,
       headers: {

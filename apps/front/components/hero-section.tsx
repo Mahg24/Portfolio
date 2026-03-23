@@ -6,7 +6,7 @@ import Link from "next/link";
 import { Download } from "lucide-react";
 import Image from "next/image";
 import md5 from "blueimp-md5";
-const email = process.env.NEXT_PUBLIC_USER_EMAIL || "";
+const email = process.env.NEXT_PUBLIC_USER_EMAIL || "mahg0524@gmail.com";
 
 const emailHash = md5(email.trim().toLowerCase());
 const gravatarUrl = `https://www.gravatar.com/avatar/${emailHash}?s=320&d=identicon`;

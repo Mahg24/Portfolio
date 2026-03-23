@@ -21,6 +21,15 @@ const nextConfig = {
     parallelServerBuildTraces: true,
     parallelServerCompiles: true,
   },
+  async rewrites() {
+    return [
+      {
+        source: '/api/:path*',
+        // Use BACKEND_URL if provided, else fallback to docker container 'back' on port 5000
+        destination: `${process.env.BACKEND_URL || 'http://back:5000'}/:path*`, 
+      },
+    ];
+  },
 }
 
 mergeConfig(nextConfig, userConfig)

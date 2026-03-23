@@ -41,7 +41,7 @@ RUN pnpm prune --prod
 COPY --from=builder /app/dist ./dist
 
 # Puerto por defecto de NestJS
-EXPOSE 3000
+EXPOSE 3001
 
 # Comando de inicio
 CMD ["node", "dist/main"]

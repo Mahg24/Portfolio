@@ -1,0 +1,19 @@
+services:
+  front:
+    build: ./apps/front
+    image: front
+    ports:
+      - "3000:3000"
+    restart: always
+    env_file:
+      - .env.front
+    depends_on:
+      - back
+  back:
+   build: ./apps/back
+   expose: 
+        - "5000"
+   restart: always
+   env_file:
+      - .env.back
+   image: back
