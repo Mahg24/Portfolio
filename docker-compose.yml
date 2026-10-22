@@ -1,7 +1,12 @@
+# En el servidor las imágenes vienen de GHCR (ver .github/workflows/deploy.yml).
+# IMAGE_TAG lo fija el despliegue al SHA del commit; sin él se usa "latest".
+# En local, `docker compose up --build` sigue construyendo desde el código.
 services:
   front:
-    build: ./apps/front
-    image: front
+    build:
+      context: ./apps/front
+      dockerfile: dockerfile
+    image: ghcr.io/mahg24/portfolio-front:${IMAGE_TAG:-latest}
     ports:
       - "3000:3000"
     restart: always
@@ -10,10 +15,10 @@ services:
     depends_on:
       - back
   back:
-   build: ./apps/back
-   expose: 
-        - "5000"
-   restart: always
-   env_file:
+    build: ./apps/back
+    image: ghcr.io/mahg24/portfolio-back:${IMAGE_TAG:-latest}
+    expose:
+      - "5000"
+    restart: always
+    env_file:
       - .env.back
-   image: back

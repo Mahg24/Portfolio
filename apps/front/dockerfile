@@ -4,6 +4,13 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm install --legacy-peer-deps                   
 COPY . .
+
+# Next.js incrusta las variables NEXT_PUBLIC_* y los rewrites en tiempo de build
+ARG NEXT_PUBLIC_API_URL=/api
+ARG NEXT_PUBLIC_USER_EMAIL=mahg0524@gmail.com
+ARG BACKEND_URL=http://back:5000
+ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL     NEXT_PUBLIC_USER_EMAIL=$NEXT_PUBLIC_USER_EMAIL     BACKEND_URL=$BACKEND_URL
+
 RUN npm run build
 
 # Etapa 2: Servidor de producción con Next.js
