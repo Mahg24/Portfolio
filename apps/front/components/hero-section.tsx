@@ -11,8 +11,13 @@ const email = process.env.NEXT_PUBLIC_USER_EMAIL || "mahg0524@gmail.com";
 const emailHash = md5(email.trim().toLowerCase());
 const gravatarUrl = `https://www.gravatar.com/avatar/${emailHash}?s=320&d=identicon`;
 
+const cvUrls = {
+  es: "https://pub-e3c2f3f42ba3478e84974f3ecc1f454e.r2.dev/cvEsp.pdf",
+  en: "https://pub-e3c2f3f42ba3478e84974f3ecc1f454e.r2.dev/cvIng.pdf",
+};
+
 export default function HeroSection() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   return (
     <section
@@ -33,9 +38,16 @@ export default function HeroSection() {
         </div>
 
         <div className="animate-fade-in animate-delay-300 flex justify-center space-x-4 md:justify-start">
-          <Button size="lg">
-            <Download className="mr-2 h-4 w-4" />
-            {t("hero.cta")}
+          <Button size="lg" asChild>
+            <a
+              href={cvUrls[language]}
+              target="_blank"
+              rel="noopener noreferrer"
+              download
+            >
+              <Download className="mr-2 h-4 w-4" />
+              {t("hero.cta")}
+            </a>
           </Button>
           <Link href="#contact" key={t("nav.contact")}>
             <Button variant="outline" size="lg">
