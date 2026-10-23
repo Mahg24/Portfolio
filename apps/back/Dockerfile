@@ -7,7 +7,7 @@ RUN corepack enable && corepack prepare pnpm@${PNPM_VERSION} --activate
 
 # Instalar dependencias
 COPY package.json pnpm-lock.yaml ./
-RUN pnpm --version && pnpm install --no-frozen-lockfile
+RUN pnpm --version && pnpm install --frozen-lockfile
 
 # Copiar configuración y código fuente
 COPY tsconfig.json tsconfig.build.json nest-cli.json ./

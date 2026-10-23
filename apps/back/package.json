@@ -77,5 +77,10 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
+  },
+  "pnpm": {
+    "overrides": {
+      "@types/mjml": "4.7.4"
+    }
   }
 }
